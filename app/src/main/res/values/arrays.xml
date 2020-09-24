@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="leagueName">
+        <item>Premier League</item>
+        <item>La Liga</item>
+        <item>Serie A</item>
+        <item>Ligue 1</item>
+        <item>Bundesliga</item>
+    </string-array>
+
+    <array name="leagueLogo">
+        <item>@drawable/premier_league</item>
+        <item>@drawable/laliga</item>
+        <item>@drawable/serie_a</item>
+        <item>@drawable/ligue_1</item>
+        <item>@drawable/bundesliga</item>
+    </array>
+
+</resources>
