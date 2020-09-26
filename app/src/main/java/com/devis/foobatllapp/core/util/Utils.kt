@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream
  * Created by Devis on 20/09/20
  */
 
-fun ImageView.setImage(image: Drawable) {
+fun ImageView.setImage(image: Int) {
     Glide.with(context)
         .load(image)
         .into(this)

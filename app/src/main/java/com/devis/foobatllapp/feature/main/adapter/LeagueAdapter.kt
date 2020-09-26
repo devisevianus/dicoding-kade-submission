@@ -1,16 +1,16 @@
-package com.devis.foobatllapp.feature
+package com.devis.foobatllapp.feature.main.adapter
 
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.model.LeagueMdl
 import com.devis.foobatllapp.core.util.setImage
-import kotlinx.android.synthetic.main.item_league.view.*
+import com.devis.foobatllapp.feature.main.ui.LeagueItemUI
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.find
 
 /**
  * Created by Devis on 20/09/20
@@ -22,7 +22,7 @@ class LeagueAdapter(
 ) : RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_league, parent, false)
+        val view = LeagueItemUI().createView(AnkoContext.create(parent.context, this))
         return ViewHolder(view)
     }
 
@@ -33,22 +33,20 @@ class LeagueAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val ivLeagueLogo: ImageView = itemView.find(R.id.iv_league_logo)
+        private val tvLeagueName: TextView = itemView.find(R.id.tv_league_name)
+
         fun bind(item: LeagueMdl, listener: (LeagueMdl) -> Unit) {
-            itemView.iv_league_logo.setImage(
-                BitmapDrawable(
-                    itemView.resources,
-                    BitmapFactory.decodeByteArray(item.leagueLogo, 0, item.leagueLogo.size)
-                )
-            )
-            itemView.tv_league_name.text = item.leagueName
+            ivLeagueLogo.setImage(item.leagueLogo)
+            tvLeagueName.text = item.leagueName
             itemView.setOnClickListener {
                 listener(item)
             }
         }
     }
 
-    interface ItemClickListener {
+    /*interface ItemClickListener {
         fun onItemClickListener(leagueName: String)
-    }
+    }*/
 
 }

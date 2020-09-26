@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="toolbar" type="id" />
+    <item name="collapsing_toolbar" type="id" />
+    <item name="iv_toolbar_background" type="id" />
+    <item name="tv_league_detail" type="id" />
+    <item name="iv_league_logo" type="id" />
+    <item name="tv_league_name" type="id" />
 </resources>

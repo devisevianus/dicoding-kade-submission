@@ -17,4 +17,37 @@
         <item>@drawable/bundesliga</item>
     </array>
 
+    <array name="leagueBackground">
+        <item>@drawable/premier_league_background</item>
+        <item>@drawable/la_liga_background</item>
+        <item>@drawable/serie_a_background</item>
+        <item>@drawable/ligue_1_background</item>
+        <item>@drawable/bundesliga_background_2</item>
+    </array>
+
+    <string-array name="leagueDetail">
+        <item>
+            The Premier League, often referred to as the English Premier League or the EPL outside England,
+            is the top level of the English football league system.
+            Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League.
+        </item>
+        <item>The Campeonato Nacional de Liga de Primera División, commonly known as La Liga,
+            is the men\'s top professional football division of the Spanish football league system.</item>
+        <item>
+            Serie A, also called Serie A TIM due to sponsorship by TIM, is a professional league competition for
+            football clubs located at the top of the Italian football league system and the winner is
+            awarded the Scudetto and the Coppa Campioni d\'Italia.
+        </item>
+        <item>
+            Ligue 1, also called Ligue 1 Uber Eats due to sponsorship by Uber Eats, is a French professional
+            league for men\'s association football clubs. At the top of the French football league system,
+            it is the country\'s primary football competition.
+        </item>
+        <item>
+            The Bundesliga, sometimes referred to as the Fußball-Bundesliga or 1. Bundesliga, is a professional
+            association football league in Germany. At the top of the German football league system,
+            the Bundesliga is Germany\'s primary football competition.
+        </item>
+    </string-array>
+
 </resources>
