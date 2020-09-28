@@ -7,6 +7,7 @@ import java.io.Serializable
  */
 
 data class LeagueMdl(
+    val leagueId: String,
     val leagueLogo: Int,
     val leagueName: String,
     val leagueDetail: String,

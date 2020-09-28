@@ -6,4 +6,17 @@
     <item name="tv_league_detail" type="id" />
     <item name="iv_league_logo" type="id" />
     <item name="tv_league_name" type="id" />
+    <item name="tab_layout_league_detail" type="id" />
+    <item name="view_page_league_detail" type="id" />
+    <item name="rv_last_match" type="id" />
+
+    <!-- Match Item -->
+    <item name="tv_match_date" type="id" />
+    <item name="iv_team_home" type="id" />
+    <item name="iv_team_away" type="id" />
+    <item name="tv_team_home" type="id" />
+    <item name="tv_team_away" type="id" />
+    <item name="tv_score_home" type="id" />
+    <item name="tv_score_away" type="id" />
+    <item name="guideline" type="id" />
 </resources>

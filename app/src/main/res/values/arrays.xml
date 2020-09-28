@@ -25,6 +25,14 @@
         <item>@drawable/bundesliga_background_2</item>
     </array>
 
+    <string-array name="leagueId">
+        <item>4328</item>
+        <item>4335</item>
+        <item>4332</item>
+        <item>4334</item>
+        <item>4331</item>
+    </string-array>
+
     <string-array name="leagueDetail">
         <item>
             The Premier League, often referred to as the English Premier League or the EPL outside England,
