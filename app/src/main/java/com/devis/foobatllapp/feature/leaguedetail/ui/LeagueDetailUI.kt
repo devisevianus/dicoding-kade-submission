@@ -1,14 +1,11 @@
 package com.devis.foobatllapp.feature.leaguedetail.ui
 
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
 import android.graphics.Color
 import android.util.Log
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import com.devis.foobatllapp.R
-import com.devis.foobatllapp.core.model.LeagueMdl
+import com.devis.foobatllapp.core.model.ResponseLeagueMdl
 import com.devis.foobatllapp.core.util.setImage
 import com.devis.foobatllapp.feature.leaguedetail.adapter.LeagueDetailAdapter
 import com.devis.foobatllapp.feature.leaguedetail.presentation.LeagueDetailActivity
@@ -23,15 +20,14 @@ import org.jetbrains.anko.design.collapsingToolbarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.tabLayout
 import org.jetbrains.anko.support.v4.viewPager
-import kotlin.math.abs
 
 /**
  * Created by Devis on 26/09/20
  */
 
-class LeagueDetailUI(leagueMdl: LeagueMdl?) : AnkoComponent<LeagueDetailActivity> {
+class LeagueDetailUI(leagueMdl: ResponseLeagueMdl?) : AnkoComponent<LeagueDetailActivity> {
 
-    private val mLeagueMdl: LeagueMdl? = leagueMdl
+    private val mLeagueMdl: ResponseLeagueMdl? = leagueMdl
 
     override fun createView(ui: AnkoContext<LeagueDetailActivity>) = with(ui) {
         coordinatorLayout {
@@ -42,7 +38,7 @@ class LeagueDetailUI(leagueMdl: LeagueMdl?) : AnkoComponent<LeagueDetailActivity
 
                 collapsingToolbarLayout {
                     id = R.id.collapsing_toolbar
-                    title = mLeagueMdl?.leagueName
+                    title = mLeagueMdl?.league_name
                     fitsSystemWindows = true
                     setContentScrimColor(ContextCompat.getColor(context, R.color.colorPrimary))
                     setExpandedTitleColor(Color.WHITE)
@@ -54,11 +50,11 @@ class LeagueDetailUI(leagueMdl: LeagueMdl?) : AnkoComponent<LeagueDetailActivity
                         scaleType = ImageView.ScaleType.CENTER_CROP
                     }.lparams(matchParent, matchParent) {
                         collapseMode = CollapsingToolbarLayout.LayoutParams.COLLAPSE_MODE_PARALLAX
-                    }.setImage(mLeagueMdl?.leagueBackground!!)
+                    }/*.setImage(imageUrl = mLeagueMdl?.league_banner)*/
 
                     toolbar {
                         id = R.id.toolbar
-                        title = mLeagueMdl.leagueName
+                        title = mLeagueMdl?.league_name
                         context?.setTheme(R.style.ToolbarTheme)
                     }.lparams(matchParent, dimenAttr(android.R.attr.actionBarSize)) {
                         collapseMode = CollapsingToolbarLayout.LayoutParams.COLLAPSE_MODE_PIN
@@ -76,16 +72,16 @@ class LeagueDetailUI(leagueMdl: LeagueMdl?) : AnkoComponent<LeagueDetailActivity
                         (context as LeagueDetailActivity).supportFragmentManager
                     )
                 adapter.apply {
-                    add(OverviewFragment.newInstance(mLeagueMdl?.leagueDetail.orEmpty()), "Overview")
-                    add(LastMatchFragment.newInstance(mLeagueMdl?.leagueId.toString()), "Last Match")
+                    add(OverviewFragment.newInstance(mLeagueMdl?.league_description.orEmpty()), "Overview")
+                    add(LastMatchFragment.newInstance(mLeagueMdl?.league_id.toString()), "Last Match")
                 }
 
                 val color = when {
-                    mLeagueMdl?.leagueName.equals("premier league", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorIndigo)
+                    /*mLeagueMdl?.leagueName.equals("premier league", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorIndigo)
                     mLeagueMdl?.leagueName.equals("la liga", ignoreCase = true) -> Color.BLACK
                     mLeagueMdl?.leagueName.equals("serie a", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorDarkCerulean)
                     mLeagueMdl?.leagueName.equals("ligue 1", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorSapphire)
-                    mLeagueMdl?.leagueName.equals("bundesliga", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorPersianRed)
+                    mLeagueMdl?.leagueName.equals("bundesliga", ignoreCase = true) -> ContextCompat.getColor(context, R.color.colorPersianRed)*/
                     else -> ContextCompat.getColor(context, R.color.colorPrimary)
                 }
 
@@ -106,11 +102,11 @@ class LeagueDetailUI(leagueMdl: LeagueMdl?) : AnkoComponent<LeagueDetailActivity
 
                 appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, offset ->
                     Log.d("offsetAppbar", offset.toString())
-                    val alpha = abs(offset) / 100F
+                    //val alpha = abs(offset) / 100F
                     if (offset <= -145) {
                         tabLayout.animate().withStartAction {
-                            val colorResult = ColorUtils.blendARGB(color, ContextCompat.getColor(context, R.color.colorPrimary), alpha)
-                            tabLayout.setBackgroundColor(colorResult)
+                            //val colorResult = ColorUtils.blendARGB(ContextCompat.getColor(context, R.color.colorTest), Color.WHITE, alpha)
+                            tabLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
                         }.start()
                     } else {
                         tabLayout.animate().withStartAction {

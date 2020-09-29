@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.base.BaseActivity
-import com.devis.foobatllapp.core.model.LeagueMdl
+import com.devis.foobatllapp.core.model.ResponseLeagueMdl
 import com.devis.foobatllapp.feature.leaguedetail.ui.LeagueDetailUI
 import com.google.gson.Gson
 import org.jetbrains.anko.*
@@ -18,14 +18,14 @@ class LeagueDetailActivity : BaseActivity() {
     companion object {
         private const val EXTRA_LEAGUE = "league"
 
-        fun startThisActivity(context: Context, leagueMdl: LeagueMdl) {
+        fun startThisActivity(context: Context, leagueMdl: ResponseLeagueMdl) {
             context.startActivity<LeagueDetailActivity>(
                 EXTRA_LEAGUE to Gson().toJson(leagueMdl)
             )
         }
     }
 
-    private var mLeagueMdl: LeagueMdl? = null
+    private var mLeagueMdl: ResponseLeagueMdl? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +49,7 @@ class LeagueDetailActivity : BaseActivity() {
 
     private fun getExtraData() {
         intent.extras?.let {
-            mLeagueMdl = Gson().fromJson(it.get(EXTRA_LEAGUE).toString(), LeagueMdl::class.java)
+            mLeagueMdl = Gson().fromJson(it.get(EXTRA_LEAGUE).toString(), ResponseLeagueMdl::class.java)
         }
     }
 

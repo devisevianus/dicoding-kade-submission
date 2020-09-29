@@ -8,4 +8,6 @@
     <color name="colorDarkCerulean">#064279</color>
     <color name="colorSapphire">#071635</color>
     <color name="colorPersianRed">#CD3230</color>
+
+    <color name="colorTest">#848484</color>
 </resources>
