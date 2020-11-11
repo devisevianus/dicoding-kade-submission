@@ -1,4 +1,4 @@
-package com.devis.foobatllapp.feature.main
+package com.devis.foobatllapp.feature.main.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.devis.foobatllapp.BuildConfig
 import com.devis.foobatllapp.core.base.BaseViewState
 import com.devis.foobatllapp.core.model.ResponseLeagueMdl
-import com.devis.foobatllapp.core.model.ResponseListLeagueMdl
 import com.devis.foobatllapp.data.repository.MainRepository
 import com.devis.foobatllapp.data.source.remote.ApiClient
 import com.devis.foobatllapp.data.source.remote.MainService

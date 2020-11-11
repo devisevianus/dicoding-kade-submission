@@ -16,7 +16,7 @@ class LeagueItemUI : AnkoComponent<LeagueAdapter> {
         verticalLayout {
             lparams(matchParent, wrapContent)
             cardView {
-                radius = 4F
+                radius = 8F
 
                 constraintLayout {
 

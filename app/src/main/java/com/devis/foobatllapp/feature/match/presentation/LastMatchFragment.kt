@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devis.foobatllapp.R
@@ -40,18 +40,13 @@ class LastMatchFragment : BaseFragment() {
         }
     }
 
-    private lateinit var mViewModel: MatchViewModel
     private lateinit var mAdapter: MatchAdapter
     private lateinit var mRvEventList: RecyclerView
 
     private var mLeagueId: String = ""
 
+    private val mViewModel: MatchViewModel by viewModels()
     private val mListEvent: ArrayList<EventMdl> = arrayListOf()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(MatchViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
