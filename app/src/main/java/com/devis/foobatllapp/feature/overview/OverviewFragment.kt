@@ -1,6 +1,5 @@
 package com.devis.foobatllapp.feature.overview
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +28,11 @@ class OverviewFragment : BaseFragment() {
             }
             return fragment.apply { arguments = bundle }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
     }
 
     override fun onCreateView(

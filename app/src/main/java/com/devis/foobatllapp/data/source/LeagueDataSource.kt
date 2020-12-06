@@ -17,4 +17,6 @@ interface LeagueDataSource {
 
     suspend fun getLastLeagueMatch(id: String): ResultState<EventsMdl>
 
+    suspend fun getNextLeagueMatch(id: String): ResultState<EventsMdl>
+
 }

@@ -49,4 +49,15 @@ class RemoteLeagueDataSource(
         }
     }
 
+    override suspend fun getNextLeagueMatch(id: String): ResultState<EventsMdl> {
+        return fetchState {
+            val response = apiService.getNextLeagueMatch(id)
+            if (response.isSuccessful) {
+                ResultState.Success(response.body())
+            } else {
+                ResultState.Error(response.handleError().message)
+            }
+        }
+    }
+
 }

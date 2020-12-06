@@ -7,25 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.model.EventMdl
 import com.devis.foobatllapp.core.util.convertDate
-import com.devis.foobatllapp.feature.match.ui.MatchItemUI
+import com.devis.foobatllapp.feature.match.ui.NextMatchItemUI
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.find
 
-/**
- * Created by Devis on 27/09/20
- */
-
-class MatchAdapter(
-    private val listEvent: ArrayList<EventMdl>,
-    private val unit: (EventMdl) -> Unit
-) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
+class NextMatchAdapter(
+    private val listEvent: ArrayList<EventMdl>
+) : RecyclerView.Adapter<NextMatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = MatchItemUI()
-            .createView(AnkoContext.Companion.create(parent.context, this))
-        return ViewHolder(
-            view
+        val view = NextMatchItemUI().createView(
+            AnkoContext.Companion.create(parent.context, this)
         )
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -40,15 +34,13 @@ class MatchAdapter(
         private val tvEventDate = itemView.find<TextView>(R.id.tv_match_date)
         private val tvTeamHome = itemView.find<TextView>(R.id.tv_team_home)
         private val tvTeamAway = itemView.find<TextView>(R.id.tv_team_away)
-        private val tvScoreHome = itemView.find<TextView>(R.id.tv_score_home)
-        private val tvScoreAway = itemView.find<TextView>(R.id.tv_score_away)
+        private val tvMatchTime = itemView.find<TextView>(R.id.tv_match_time)
 
         fun bind(item: EventMdl) {
             tvEventDate.text = item.date_event.convertDate()
             tvTeamHome.text = item.team_home
             tvTeamAway.text = item.team_away
-            tvScoreHome.text = item.home_score.toString()
-            tvScoreAway.text = item.away_score.toString()
+            tvMatchTime.text = item.strTime
         }
     }
 

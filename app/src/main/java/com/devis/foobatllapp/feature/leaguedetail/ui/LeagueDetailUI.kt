@@ -6,11 +6,11 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.model.ResponseLeagueMdl
-import com.devis.foobatllapp.core.util.setImage
 import com.devis.foobatllapp.feature.leaguedetail.adapter.LeagueDetailAdapter
 import com.devis.foobatllapp.feature.leaguedetail.presentation.LeagueDetailActivity
 import com.devis.foobatllapp.feature.overview.OverviewFragment
 import com.devis.foobatllapp.feature.match.presentation.LastMatchFragment
+import com.devis.foobatllapp.feature.match.presentation.NextMatchFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import org.jetbrains.anko.*
@@ -31,15 +31,15 @@ class LeagueDetailUI(leagueMdl: ResponseLeagueMdl?) : AnkoComponent<LeagueDetail
 
     override fun createView(ui: AnkoContext<LeagueDetailActivity>) = with(ui) {
         coordinatorLayout {
-            fitsSystemWindows = true
+            //fitsSystemWindows = true
 
             val appBarLayout = appBarLayout {
-                fitsSystemWindows = true
+                //fitsSystemWindows = true
 
                 collapsingToolbarLayout {
                     id = R.id.collapsing_toolbar
                     title = mLeagueMdl?.league_name
-                    fitsSystemWindows = true
+                    //fitsSystemWindows = true
                     setContentScrimColor(ContextCompat.getColor(context, R.color.colorPrimary))
                     setExpandedTitleColor(Color.WHITE)
                     setCollapsedTitleTextColor(Color.WHITE)
@@ -64,7 +64,7 @@ class LeagueDetailUI(leagueMdl: ResponseLeagueMdl?) : AnkoComponent<LeagueDetail
                     scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
                 }
 
-            }.lparams(matchParent, 500)
+            }.lparams(matchParent, 400)
 
             verticalLayout {
                 val adapter =
@@ -74,6 +74,7 @@ class LeagueDetailUI(leagueMdl: ResponseLeagueMdl?) : AnkoComponent<LeagueDetail
                 adapter.apply {
                     add(OverviewFragment.newInstance(mLeagueMdl?.league_description.orEmpty()), "Overview")
                     add(LastMatchFragment.newInstance(mLeagueMdl?.league_id.toString()), "Last Match")
+                    add(NextMatchFragment.newInstance(mLeagueMdl?.league_id.toString()), "Next Match")
                 }
 
                 val color = when {
@@ -96,6 +97,7 @@ class LeagueDetailUI(leagueMdl: ResponseLeagueMdl?) : AnkoComponent<LeagueDetail
                 val viewPager = viewPager {
                     id = R.id.view_page_league_detail
                     this.adapter = adapter
+                    offscreenPageLimit = adapter.count
                 }.lparams(matchParent, matchParent)
 
                 tabLayout.setupWithViewPager(viewPager)

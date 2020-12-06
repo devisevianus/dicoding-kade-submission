@@ -25,7 +25,8 @@ import kotlinx.coroutines.withContext
 class MatchViewModel : ViewModel() {
 
     private val mListEvent: MutableLiveData<BaseViewState<ResultsMdl>> = MutableLiveData()
-    private val mListLeagueEvent: MutableLiveData<BaseViewState<EventsMdl>> = MutableLiveData()
+    private val mListLeagueLastEvent: MutableLiveData<BaseViewState<EventsMdl>> = MutableLiveData()
+    private val mListLeagueNextEvent: MutableLiveData<BaseViewState<EventsMdl>> = MutableLiveData()
     private val mRepository: LeagueRepository.LeagueRepositoryImpl
     private val mRemoteDataSource: RemoteLeagueDataSource
     private val mApiService: ApiService = ApiClient
@@ -33,7 +34,8 @@ class MatchViewModel : ViewModel() {
     private var jobCallApi: Job? = null
 
     val listEvent: LiveData<BaseViewState<ResultsMdl>> = mListEvent
-    val listLeagueEvent: LiveData<BaseViewState<EventsMdl>> = mListLeagueEvent
+    val listLeagueLastEvent: LiveData<BaseViewState<EventsMdl>> = mListLeagueLastEvent
+    val listLeagueNextEvent: LiveData<BaseViewState<EventsMdl>> = mListLeagueNextEvent
 
     init {
         mRemoteDataSource = RemoteLeagueDataSource(mApiService)
@@ -64,7 +66,7 @@ class MatchViewModel : ViewModel() {
     }
 
     fun getLastLeagueMatch(id: String) {
-        mListEvent.value = BaseViewState.Loading
+        mListLeagueLastEvent.value = BaseViewState.Loading
         jobCallApi = viewModelScope.launch(Dispatchers.Main) {
             val request = withContext(Dispatchers.IO) {
                 mRepository.getLastLeagueMatch(id)
@@ -72,11 +74,30 @@ class MatchViewModel : ViewModel() {
 
             when(request) {
                 is ResultState.Success -> {
-                    mListLeagueEvent.value = BaseViewState.Success(request.data)
+                    mListLeagueLastEvent.value = BaseViewState.Success(request.data)
                 }
                 is ResultState.Error -> {
-                    mListLeagueEvent.value = BaseViewState.Error(request.errorMessage)
+                    mListLeagueLastEvent.value = BaseViewState.Error(request.errorMessage)
                 }
+            }
+        }
+    }
+
+    fun getNextLeagueMatch(id: String) {
+        mListLeagueNextEvent.value = BaseViewState.Loading
+        jobCallApi = viewModelScope.launch(Dispatchers.Main) {
+            val request = withContext(Dispatchers.IO) {
+                mRepository.getNextLeagueMatch(id)
+            }
+
+            when(request) {
+                is ResultState.Success -> {
+                    mListLeagueNextEvent.value = BaseViewState.Success(request.data)
+                }
+                is ResultState.Error -> {
+                    mListLeagueNextEvent.value = BaseViewState.Error(request.errorMessage)
+                }
+                is ResultState.ErrorWithCode -> {}
             }
         }
     }

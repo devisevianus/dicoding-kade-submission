@@ -14,33 +14,25 @@ import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.base.BaseFragment
 import com.devis.foobatllapp.core.base.BaseViewState
 import com.devis.foobatllapp.core.model.EventMdl
+import com.devis.foobatllapp.feature.match.adapter.NextMatchAdapter
 import com.devis.foobatllapp.feature.match.ui.MatchUI
-import com.devis.foobatllapp.feature.match.adapter.MatchAdapter
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.findOptional
+import kotlin.collections.ArrayList
 
-/**
- * Created by Devis on 27/09/20
- */
-
-class LastMatchFragment : BaseFragment() {
+class NextMatchFragment : BaseFragment() {
 
     companion object {
         private const val EXTRA_LEAGUE_ID = "leagueId"
 
         fun newInstance(leagueId: String): Fragment {
-            val fragment =
-                LastMatchFragment()
-            val bundle = Bundle()
-            bundle.apply {
-                putString(EXTRA_LEAGUE_ID, leagueId)
-            }
-
+            val fragment = NextMatchFragment()
+            val bundle = Bundle().apply { putString(EXTRA_LEAGUE_ID, leagueId) }
             return fragment.apply { arguments = bundle }
         }
     }
 
-    private lateinit var mAdapter: MatchAdapter
+    private lateinit var mAdapter: NextMatchAdapter
     private lateinit var mRvEventList: RecyclerView
 
     private var mLeagueId: String = ""
@@ -58,8 +50,7 @@ class LastMatchFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return MatchUI()
-            .createView(AnkoContext.Companion.create(mContext, this))
+        return MatchUI().createView(AnkoContext.Companion.create(mContext, this))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +59,7 @@ class LastMatchFragment : BaseFragment() {
         initObserve()
         initView()
         initRecyclerView()
-        mViewModel.getLastLeagueMatch(mLeagueId)
+        mViewModel.getNextLeagueMatch(mLeagueId)
     }
 
     private fun getExtraData() {
@@ -77,22 +68,24 @@ class LastMatchFragment : BaseFragment() {
 
     private fun initObserve() {
         mViewModel.run {
-            listLeagueLastEvent.observe(viewLifecycleOwner, Observer {
+            listLeagueNextEvent.observe(viewLifecycleOwner, Observer {
                 when(it) {
                     is BaseViewState.Loading -> {
-                        Log.d("lastMatch", "LOADING")
+                        Log.d("nextMatch", "LOADING")
                     }
                     is BaseViewState.Success -> {
-                        Log.d("lastMatch", "SUCCESS")
+                        Log.d("nextMatch", "SUCCESS")
                         if (!it.data?.events.isNullOrEmpty()) {
                             mListEvent.clear()
-                            mListEvent.addAll(it.data?.events!!)
+                            mListEvent.addAll(it.data?.events!!.sortedBy { event ->
+                                event.strTimestamp
+                            })
                             mAdapter.notifyDataSetChanged()
                         }
                     }
                     is BaseViewState.Error -> {
-                        Log.e("lastMatch", it.errorMessage.orEmpty())
-                        Log.d("lastMatch", "ERROR")
+                        Log.e("nextMatch", it.errorMessage.orEmpty())
+                        Log.d("nextMatch", "ERROR")
                     }
                 }
             })
@@ -105,9 +98,7 @@ class LastMatchFragment : BaseFragment() {
 
     private fun initRecyclerView() {
         mListEvent.clear()
-        mAdapter = MatchAdapter(mListEvent) {
-
-        }
+        mAdapter = NextMatchAdapter(mListEvent)
         mRvEventList.apply {
             layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
             adapter = mAdapter

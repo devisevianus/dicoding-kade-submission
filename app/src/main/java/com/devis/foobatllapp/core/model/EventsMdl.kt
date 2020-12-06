@@ -15,7 +15,9 @@ data class EventMdl(
     @SerializedName("idEvent") val id_event: String,
     @SerializedName("strHomeTeam") val team_home: String,
     @SerializedName("strAwayTeam") val team_away: String,
-    @SerializedName("intHomeScore") val home_score: Int,
-    @SerializedName("intAwayScore") val away_score: Int,
-    @SerializedName("dateEvent") val date_event: String
+    @SerializedName("intHomeScore") val home_score: Int?,
+    @SerializedName("intAwayScore") val away_score: Int?,
+    @SerializedName("dateEvent") val date_event: String,
+    @SerializedName("strTimestamp") val strTimestamp: String,
+    @SerializedName("strTime") val strTime: String
 )

@@ -14,6 +14,7 @@ interface LeagueRepository {
     suspend fun getListTeamsByLeague(league: String): ResultState<TeamsMdl>
     suspend fun getLastFiveMatch(id: String): ResultState<ResultsMdl>
     suspend fun getLastLeagueMatch(id: String): ResultState<EventsMdl>
+    suspend fun getNextLeagueMatch(id: String): ResultState<EventsMdl>
 
     class LeagueRepositoryImpl(
         private val remoteLeagueDataSource: RemoteLeagueDataSource
@@ -29,6 +30,10 @@ interface LeagueRepository {
 
         override suspend fun getLastLeagueMatch(id: String): ResultState<EventsMdl> {
             return remoteLeagueDataSource.getLastLeagueMatch(id)
+        }
+
+        override suspend fun getNextLeagueMatch(id: String): ResultState<EventsMdl> {
+            return remoteLeagueDataSource.getNextLeagueMatch(id)
         }
 
     }

@@ -28,4 +28,9 @@ interface ApiService {
         @Query("id") id: String
     ): Response<EventsMdl>
 
+    @GET("api/v1/json/1/eventsnextleague.php")
+    suspend fun getNextLeagueMatch(
+        @Query("id") id: String
+    ): Response<EventsMdl>
+
 }

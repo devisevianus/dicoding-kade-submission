@@ -2,6 +2,7 @@ package com.devis.foobatllapp.core.util
 
 import com.devis.foobatllapp.core.util.DateUtil.DEFAULT_DATE_FORMAT
 import com.devis.foobatllapp.core.util.DateUtil.MMM_DD_YYYY
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,4 +20,16 @@ fun String.convertDate(): String {
     val date = sdf.parse(this)
     sdf = SimpleDateFormat(MMM_DD_YYYY, Locale.getDefault())
     return sdf.format(date!!)
+}
+
+fun String.convertToJakartaTimeZone(): String {
+    val timezone = TimeZone.getTimeZone("Asia/Jakarta")
+    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+    val date = sdf.apply {
+        timeZone = TimeZone.getTimeZone("GMT+0")
+    }.parse(this)
+    val dateFormatter: DateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    return dateFormatter.apply {
+        timeZone = timezone
+    }.format(date!!)
 }
