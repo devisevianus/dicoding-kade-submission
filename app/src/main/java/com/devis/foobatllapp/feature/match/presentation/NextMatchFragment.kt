@@ -78,7 +78,7 @@ class NextMatchFragment : BaseFragment() {
                         if (!it.data?.events.isNullOrEmpty()) {
                             mListEvent.clear()
                             mListEvent.addAll(it.data?.events!!.sortedBy { event ->
-                                event.strTimestamp
+                                event.str_timestamp
                             })
                             mAdapter.notifyDataSetChanged()
                         }

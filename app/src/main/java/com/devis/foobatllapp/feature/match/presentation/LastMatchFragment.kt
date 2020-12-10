@@ -16,6 +16,7 @@ import com.devis.foobatllapp.core.base.BaseViewState
 import com.devis.foobatllapp.core.model.EventMdl
 import com.devis.foobatllapp.feature.match.ui.MatchUI
 import com.devis.foobatllapp.feature.match.adapter.MatchAdapter
+import com.devis.foobatllapp.feature.matchdetail.presentation.MatchDetailActivity
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.findOptional
 
@@ -86,7 +87,7 @@ class LastMatchFragment : BaseFragment() {
                         Log.d("lastMatch", "SUCCESS")
                         if (!it.data?.events.isNullOrEmpty()) {
                             mListEvent.clear()
-                            mListEvent.addAll(it.data?.events!!)
+                            mListEvent.addAll(it.data?.events!!.take(15))
                             mAdapter.notifyDataSetChanged()
                         }
                     }
@@ -106,7 +107,7 @@ class LastMatchFragment : BaseFragment() {
     private fun initRecyclerView() {
         mListEvent.clear()
         mAdapter = MatchAdapter(mListEvent) {
-
+            MatchDetailActivity.startThisActivity(mContext, it)
         }
         mRvEventList.apply {
             layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)

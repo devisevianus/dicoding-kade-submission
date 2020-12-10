@@ -8,6 +8,7 @@
     <item name="tv_league_name" type="id" />
     <item name="tab_layout_league_detail" type="id" />
     <item name="view_page_league_detail" type="id" />
+    <item name="view_pager_match_detail" type="id" />
     <item name="rv_match_list" type="id" />
 
     <!-- Match Item -->
@@ -20,4 +21,18 @@
     <item name="tv_score_away" type="id" />
     <item name="tv_match_time" type="id" />
     <item name="guideline" type="id" />
+
+    <!-- Match Info -->
+    <item name="rv_match_info" type="id" />
+    <item name="tv_event_value_home" type="id" />
+    <item name="tv_event_value_away" type="id" />
+    <item name="tv_event_time" type="id" />
+    <item name="tv_divider" type="id" />
+
+    <!-- Statistics -->
+    <item name="rv_statistic" type="id" />
+    <item name="tv_statistic_home" type="id" />
+    <item name="tv_statistic_away" type="id" />
+    <item name="tv_statistic_name" type="id" />
+
 </resources>

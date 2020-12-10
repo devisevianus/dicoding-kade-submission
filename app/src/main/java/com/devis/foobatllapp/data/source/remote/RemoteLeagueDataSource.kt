@@ -40,7 +40,7 @@ class RemoteLeagueDataSource(
 
     override suspend fun getLastLeagueMatch(id: String): ResultState<EventsMdl> {
         return fetchState {
-            val response = apiService.getLastLeagueMatch(id)
+            val response = apiService.getEventsSeason(id, "2014-2015")
             if (response.isSuccessful) {
                 ResultState.Success(response.body())
             } else {

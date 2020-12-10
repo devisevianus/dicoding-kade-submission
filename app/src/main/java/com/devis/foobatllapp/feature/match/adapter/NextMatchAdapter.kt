@@ -40,7 +40,7 @@ class NextMatchAdapter(
             tvEventDate.text = item.date_event.convertDate()
             tvTeamHome.text = item.team_home
             tvTeamAway.text = item.team_away
-            tvMatchTime.text = item.strTime
+            tvMatchTime.text = item.str_time
         }
     }
 
