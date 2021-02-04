@@ -6,4 +6,50 @@
     <item name="tv_league_detail" type="id" />
     <item name="iv_league_logo" type="id" />
     <item name="tv_league_name" type="id" />
+    <item name="tab_layout_league_detail" type="id" />
+    <item name="view_page_league_detail" type="id" />
+    <item name="view_pager_match_detail" type="id" />
+    <item name="rv_match_list" type="id" />
+
+    <!-- Match Item -->
+    <item name="tv_match_date" type="id" />
+    <item name="iv_team_home" type="id" />
+    <item name="iv_team_away" type="id" />
+    <item name="tv_team_home" type="id" />
+    <item name="tv_team_away" type="id" />
+    <item name="tv_score_home" type="id" />
+    <item name="tv_score_away" type="id" />
+    <item name="tv_match_time" type="id" />
+    <item name="guideline" type="id" />
+
+    <!-- Match Info -->
+    <item name="rv_match_info" type="id" />
+    <item name="tv_event_value_home" type="id" />
+    <item name="tv_event_value_away" type="id" />
+    <item name="tv_event_time" type="id" />
+    <item name="tv_divider" type="id" />
+
+    <!-- Statistics -->
+    <item name="rv_statistic" type="id" />
+    <item name="tv_statistic_home" type="id" />
+    <item name="tv_statistic_away" type="id" />
+    <item name="tv_statistic_name" type="id" />
+
+    <!-- Line Up -->
+    <item name="rv_line_up" type="id" />
+    <item name="tv_line_up_home" type="id" />
+    <item name="tv_line_up_away" type="id" />
+
+    <!-- Next Match -->
+    <item name="iv_kickoff" type="id" />
+    <item name="iv_competition" type="id" />
+    <item name="iv_stadium" type="id" />
+    <item name="tv_title_match_info" type="id" />
+    <item name="tv_kickoff" type="id" />
+    <item name="tv_kickoff_value" type="id" />
+    <item name="tv_competition" type="id" />
+    <item name="tv_competition_value" type="id" />
+    <item name="tv_stadium" type="id" />
+    <item name="tv_stadium_value" type="id" />
+
 </resources>

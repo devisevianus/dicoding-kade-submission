@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.devis.foobatllapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".feature.main.ui.MainActivity">
+        <activity android:name=".feature.main.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".feature.leaguedetail.LeagueDetailActivity" />
+        <activity android:name=".feature.leaguedetail.presentation.LeagueDetailActivity" />
+        <activity android:name=".feature.matchdetail.presentation.MatchDetailActivity" />
+        <activity android:name=".feature.matchdetail.presentation.NextMatchDetailActivity" />
     </application>
 
 </manifest>
