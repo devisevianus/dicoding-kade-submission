@@ -40,4 +40,16 @@
     <item name="tv_line_up_home" type="id" />
     <item name="tv_line_up_away" type="id" />
 
+    <!-- Next Match -->
+    <item name="iv_kickoff" type="id" />
+    <item name="iv_competition" type="id" />
+    <item name="iv_stadium" type="id" />
+    <item name="tv_title_match_info" type="id" />
+    <item name="tv_kickoff" type="id" />
+    <item name="tv_kickoff_value" type="id" />
+    <item name="tv_competition" type="id" />
+    <item name="tv_competition_value" type="id" />
+    <item name="tv_stadium" type="id" />
+    <item name="tv_stadium_value" type="id" />
+
 </resources>

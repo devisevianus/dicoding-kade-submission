@@ -17,6 +17,7 @@ data class EventMdl(
     @SerializedName("strAwayTeam") val team_away: String,
     @SerializedName("intHomeScore") val home_score: Int?,
     @SerializedName("intAwayScore") val away_score: Int?,
+    @SerializedName("strLeague") val str_league: String,
     @SerializedName("dateEvent") val date_event: String,
     @SerializedName("strTimestamp") val str_timestamp: String,
     @SerializedName("strTime") val str_time: String,
@@ -37,7 +38,8 @@ data class EventMdl(
     @SerializedName("strAwayLineupDefense") val away_defense: String,
     @SerializedName("strAwayLineupMidfield") val away_midfield: String,
     @SerializedName("strAwayLineupForward") val away_forward: String,
-    @SerializedName("strAwayFormation") val away_formation: String
+    @SerializedName("strAwayFormation") val away_formation: String,
+    @SerializedName("strVenue") val stadium: String
 ) : Serializable
 
 data class CustomEventMdl(
