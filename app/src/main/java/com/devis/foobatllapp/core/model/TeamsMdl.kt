@@ -19,3 +19,8 @@ data class TeamsMdl(
     ) : Serializable
 
 }
+
+data class LineUpMdl(
+    val position: String,
+    val name: String
+)

@@ -12,7 +12,8 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.find
 
 class NextMatchAdapter(
-    private val listEvent: ArrayList<EventMdl>
+    private val listEvent: ArrayList<EventMdl>,
+    private val listener: (EventMdl) -> Unit
 ) : RecyclerView.Adapter<NextMatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +28,7 @@ class NextMatchAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listEvent[position])
+        holder.bind(listEvent[position], listener)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,11 +37,15 @@ class NextMatchAdapter(
         private val tvTeamAway = itemView.find<TextView>(R.id.tv_team_away)
         private val tvMatchTime = itemView.find<TextView>(R.id.tv_match_time)
 
-        fun bind(item: EventMdl) {
+        fun bind(item: EventMdl, listener: (EventMdl) -> Unit) {
             tvEventDate.text = item.date_event.convertDate()
             tvTeamHome.text = item.team_home
             tvTeamAway.text = item.team_away
             tvMatchTime.text = item.str_time
+
+            itemView.setOnClickListener {
+                listener(item)
+            }
         }
     }
 

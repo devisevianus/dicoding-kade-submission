@@ -16,6 +16,7 @@ import com.devis.foobatllapp.core.base.BaseViewState
 import com.devis.foobatllapp.core.model.EventMdl
 import com.devis.foobatllapp.feature.match.adapter.NextMatchAdapter
 import com.devis.foobatllapp.feature.match.ui.MatchUI
+import com.devis.foobatllapp.feature.matchdetail.presentation.NextMatchDetailActivity
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.findOptional
 import kotlin.collections.ArrayList
@@ -49,7 +50,7 @@ class NextMatchFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return MatchUI().createView(AnkoContext.Companion.create(mContext, this))
     }
 
@@ -98,7 +99,9 @@ class NextMatchFragment : BaseFragment() {
 
     private fun initRecyclerView() {
         mListEvent.clear()
-        mAdapter = NextMatchAdapter(mListEvent)
+        mAdapter = NextMatchAdapter(mListEvent) {
+            NextMatchDetailActivity.startThisActivity(mContext, it)
+        }
         mRvEventList.apply {
             layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
             adapter = mAdapter

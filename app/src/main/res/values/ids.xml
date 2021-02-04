@@ -35,4 +35,9 @@
     <item name="tv_statistic_away" type="id" />
     <item name="tv_statistic_name" type="id" />
 
+    <!-- Line Up -->
+    <item name="rv_line_up" type="id" />
+    <item name="tv_line_up_home" type="id" />
+    <item name="tv_line_up_away" type="id" />
+
 </resources>

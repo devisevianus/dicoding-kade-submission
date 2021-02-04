@@ -45,7 +45,7 @@ class MatchInfoFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return MatchInfoUI().createView(
             AnkoContext.Companion.create(
                 mContext, this
@@ -58,7 +58,7 @@ class MatchInfoFragment : BaseFragment() {
         getExtraData()
         initRecyclerView()
         subscribeToLiveData()
-        mViewModel.getEventDetailById(mEventMdl?.id_event.toString())
+        //mViewModel.getEventDetailById(mEventMdl?.id_event.toString())
     }
 
     private fun getExtraData() {
@@ -90,24 +90,28 @@ class MatchInfoFragment : BaseFragment() {
                                 }
                             }
                         }
-                        if (!homeRed.isNullOrEmpty()) {
-                            homeRed.split(";").forEach { s ->
-                                if (s.isNotBlank()) {
+                        if (!homeYellow.isNullOrEmpty()) {
+                            homeYellow.split(";").forEach { s ->
+                                if (s.isNotBlank() && mListEvent.any { event ->
+                                        event.eventSide == "home"
+                                        && event.eventType == "yellow"
+                                        && event.eventValue == s
+                                    }.not()) {
                                     val customEventMdl = CustomEventMdl(
                                         eventSide = "home",
-                                        eventType = "red",
+                                        eventType = "yellow",
                                         eventValue = s
                                     )
                                     mListEvent.add(customEventMdl)
                                 }
                             }
                         }
-                        if (!homeYellow.isNullOrEmpty()) {
-                            homeYellow.split(";").forEach { s ->
+                        if (!homeRed.isNullOrEmpty()) {
+                            homeRed.split(";").forEach { s ->
                                 if (s.isNotBlank()) {
                                     val customEventMdl = CustomEventMdl(
                                         eventSide = "home",
-                                        eventType = "yellow",
+                                        eventType = "red",
                                         eventValue = s
                                     )
                                     mListEvent.add(customEventMdl)
@@ -126,24 +130,28 @@ class MatchInfoFragment : BaseFragment() {
                                 }
                             }
                         }
+                        if (!awayYellow.isNullOrEmpty()) {
+                            var yellowValue = ""
+                            awayYellow.split(";").forEach { s ->
+                                if (yellowValue.equals(s.substringAfter(":"), ignoreCase = true).not()) {
+                                    yellowValue = s.substringAfter(":")
+                                    if (s.isNotBlank()) {
+                                        val customEventMdl = CustomEventMdl(
+                                            eventSide = "away",
+                                            eventType = "yellow",
+                                            eventValue = s
+                                        )
+                                        mListEvent.add(customEventMdl)
+                                    }
+                                }
+                            }
+                        }
                         if (!awayRed.isNullOrEmpty()) {
                             awayRed.split(";").forEach { s ->
                                 if (s.isNotBlank()) {
                                     val customEventMdl = CustomEventMdl(
                                         eventSide = "away",
                                         eventType = "red",
-                                        eventValue = s
-                                    )
-                                    mListEvent.add(customEventMdl)
-                                }
-                            }
-                        }
-                        if (!awayYellow.isNullOrEmpty()) {
-                            awayYellow.split(";").forEach { s ->
-                                if (s.isNotBlank()) {
-                                    val customEventMdl = CustomEventMdl(
-                                        eventSide = "away",
-                                        eventType = "yellow",
                                         eventValue = s
                                     )
                                     mListEvent.add(customEventMdl)

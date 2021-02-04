@@ -6,24 +6,18 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.model.EventMdl
-import com.devis.foobatllapp.feature.matchdetail.adapter.MatchDetailAdapter
-import com.devis.foobatllapp.feature.matchdetail.presentation.LineUpFragment
-import com.devis.foobatllapp.feature.matchdetail.presentation.MatchDetailActivity
-import com.devis.foobatllapp.feature.matchdetail.presentation.MatchInfoFragment
-import com.devis.foobatllapp.feature.matchdetail.presentation.StatisticsFragment
+import com.devis.foobatllapp.feature.matchdetail.presentation.NextMatchDetailActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.constraint.layout.constraintLayout
 import org.jetbrains.anko.constraint.layout.guideline
-import org.jetbrains.anko.design.tabLayout
-import org.jetbrains.anko.support.v4.viewPager
 
-class MatchDetailUI(
+class NextMatchDetailUI(
     private val eventMdl: EventMdl?
-) : AnkoComponent<MatchDetailActivity> {
+) : AnkoComponent<NextMatchDetailActivity> {
 
-    override fun createView(ui: AnkoContext<MatchDetailActivity>) = with(ui) {
+    override fun createView(ui: AnkoContext<NextMatchDetailActivity>) = with(ui) {
         verticalLayout {
             toolbar {
                 id = R.id.toolbar
@@ -32,7 +26,6 @@ class MatchDetailUI(
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 setTitleTextColor(Color.WHITE)
             }
-
             verticalLayout {
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 cardView {
@@ -40,6 +33,7 @@ class MatchDetailUI(
                     constraintLayout {
                         textView {
                             id = R.id.tv_team_home
+                            text = eventMdl?.team_home
                         }.lparams {
                             marginStart = dip(16)
                             startToStart = ConstraintSet.PARENT_ID
@@ -49,6 +43,7 @@ class MatchDetailUI(
 
                         textView {
                             id = R.id.tv_team_away
+                            text = eventMdl?.team_away
                         }.lparams {
                             marginEnd = dip(16)
                             endToEnd = ConstraintSet.PARENT_ID
@@ -58,6 +53,8 @@ class MatchDetailUI(
 
                         textView {
                             id = R.id.tv_score_home
+                            val score = eventMdl?.home_score ?: "-"
+                            text = score.toString()
                         }.lparams(wrapContent, wrapContent) {
                             topToTop = R.id.tv_team_home
                             bottomToBottom = R.id.tv_team_home
@@ -67,6 +64,8 @@ class MatchDetailUI(
 
                         textView {
                             id = R.id.tv_score_away
+                            val score = eventMdl?.away_score ?: "-"
+                            text = score.toString()
                         }.lparams(wrapContent, wrapContent) {
                             topToTop = R.id.tv_team_home
                             bottomToBottom = R.id.tv_team_home
@@ -94,29 +93,6 @@ class MatchDetailUI(
                     setMargins(dip(16), dip(16), dip(16), dip(16))
                 }
             }.lparams(matchParent, wrapContent)
-
-            val adapter = MatchDetailAdapter((context as MatchDetailActivity).supportFragmentManager)
-            adapter.apply {
-                add(MatchInfoFragment.newInstance(eventMdl), "Match Info")
-                add(StatisticsFragment.newInstance(eventMdl?.id_event.toString()), "Statistics")
-                add(LineUpFragment.newInstance(), "Line-Ups")
-            }
-
-            val tabLayout = tabLayout {
-                lparams(matchParent, wrapContent)
-                id = R.id.tab_layout_league_detail
-                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                setSelectedTabIndicatorColor(Color.WHITE)
-                setTabTextColors(Color.GRAY, Color.WHITE)
-            }
-
-            val viewPager = viewPager {
-                id = R.id.view_pager_match_detail
-                this.adapter = adapter
-                offscreenPageLimit = adapter.count
-            }.lparams(matchParent, matchParent)
-
-            tabLayout.setupWithViewPager(viewPager)
         }
     }
 

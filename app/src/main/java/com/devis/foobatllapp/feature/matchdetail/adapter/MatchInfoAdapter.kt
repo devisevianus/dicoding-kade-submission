@@ -3,6 +3,7 @@ package com.devis.foobatllapp.feature.matchdetail.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.model.CustomEventMdl
@@ -47,18 +48,77 @@ class MatchInfoAdapter(
                 tvEventValueAway.text = item.eventValue.split(":")[1]
             }
 
-            if (item.eventSide.equals("home", ignoreCase = true)
-                && item.eventType.equals("goal", ignoreCase = true)) {
-                homeScore += 1
-                tvHomeScore.text = homeScore.toString()
-                tvAwayScore.text = awayScore.toString()
-                tvDivider.visibility = View.VISIBLE
-            } else if (item.eventSide.equals("away", ignoreCase = true)
-                && item.eventType.equals("goal", ignoreCase = true)) {
-                awayScore += 1
-                tvHomeScore.text = homeScore.toString()
-                tvAwayScore.text = awayScore.toString()
-                tvDivider.visibility = View.VISIBLE
+            if (item.eventSide.equals("home", ignoreCase = true)) {
+                when {
+                    item.eventType.equals("goal", ignoreCase = true) -> {
+                        homeScore += 1
+                        tvHomeScore.text = homeScore.toString()
+                        tvAwayScore.text = awayScore.toString()
+                        tvDivider.visibility = View.VISIBLE
+                        tvEventValueHome.apply {
+                            setCompoundDrawablesWithIntrinsicBounds(
+                                null,
+                                null,
+                                ContextCompat.getDrawable(itemView.context, R.drawable.ic_football),
+                                null
+                            )
+                            compoundDrawablePadding = 12
+                        }
+                    }
+                    item.eventType.equals("yellow", ignoreCase = true) -> {
+                        tvEventValueHome.apply {
+                            setCompoundDrawablesWithIntrinsicBounds(
+                                null,
+                                null,
+                                ContextCompat.getDrawable(itemView.context, R.drawable.ic_yellow_card),
+                                null
+                            )
+                            compoundDrawablePadding = 12
+                        }
+                    }
+                    item.eventType.equals("red", ignoreCase = true) -> {
+                        tvEventValueHome.apply {
+                            setCompoundDrawablesWithIntrinsicBounds(
+                                null,
+                                null,
+                                ContextCompat.getDrawable(itemView.context, R.drawable.ic_red_card),
+                                null
+                            )
+                            compoundDrawablePadding = 12
+                        }
+                    }
+                }
+            } else if (item.eventSide.equals("away", ignoreCase = true)) {
+                when {
+                    item.eventType.equals("goal", ignoreCase = true) -> {
+                        awayScore += 1
+                        tvHomeScore.text = homeScore.toString()
+                        tvAwayScore.text = awayScore.toString()
+                        tvDivider.visibility = View.VISIBLE
+                        tvEventValueAway.setCompoundDrawablesWithIntrinsicBounds(
+                            ContextCompat.getDrawable(itemView.context, R.drawable.ic_football),
+                            null,
+                            null,
+                            null
+                        )
+                    }
+                    item.eventType.equals("yellow", ignoreCase = true) -> {
+                        tvEventValueAway.setCompoundDrawablesWithIntrinsicBounds(
+                            ContextCompat.getDrawable(itemView.context, R.drawable.ic_yellow_card),
+                            null,
+                            null,
+                            null
+                        )
+                    }
+                    item.eventType.equals("red", ignoreCase = true) -> {
+                        tvEventValueAway.setCompoundDrawablesWithIntrinsicBounds(
+                            ContextCompat.getDrawable(itemView.context, R.drawable.ic_red_card),
+                            null,
+                            null,
+                            null
+                        )
+                    }
+                }
             }
         }
     }
