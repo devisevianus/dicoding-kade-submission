@@ -2,10 +2,13 @@ package com.devis.foobatllapp.feature.leaguedetail.presentation
 
 import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.devis.foobatllapp.R
 import com.devis.foobatllapp.core.base.BaseActivity
 import com.devis.foobatllapp.core.model.ResponseLeagueMdl
 import com.devis.foobatllapp.feature.leaguedetail.ui.LeagueDetailUI
+import com.devis.foobatllapp.feature.search.presentation.SearchMatchActivity
 import com.google.gson.Gson
 import org.jetbrains.anko.*
 
@@ -33,6 +36,19 @@ class LeagueDetailActivity : BaseActivity() {
         LeagueDetailUI(mLeagueMdl).setContentView(this)
         initToolbar()
         setStatusBarColor()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_search) {
+            SearchMatchActivity.startThisActivity(this)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

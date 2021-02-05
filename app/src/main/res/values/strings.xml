@@ -7,6 +7,7 @@
         Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League.
     </string>
 
+    <string name="action_search">Search Match</string>
     <string name="label_match_info">Match Info</string>
     <string name="label_kickoff">Kick Off</string>
     <string name="label_competition">Competition</string>

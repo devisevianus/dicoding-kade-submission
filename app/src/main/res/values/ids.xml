@@ -52,4 +52,7 @@
     <item name="tv_stadium" type="id" />
     <item name="tv_stadium_value" type="id" />
 
+    <!-- Search Match -->
+    <item name="et_search" type="id" />
+
 </resources>

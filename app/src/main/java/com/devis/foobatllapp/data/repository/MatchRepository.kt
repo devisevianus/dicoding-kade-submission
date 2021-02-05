@@ -9,6 +9,7 @@ interface MatchRepository {
 
     suspend fun getEventDetailById(id: String): ResultState<EventsMdl>
     suspend fun getEventStatisticsById(id: String): ResultState<StatisticsMdl>
+    suspend fun searchEventByClubName(event: String): ResultState<EventsMdl>
 
     class MatchRepositoryImpl(
         private val remoteMatchDataSource: RemoteMatchDataSource
@@ -20,6 +21,10 @@ interface MatchRepository {
 
         override suspend fun getEventStatisticsById(id: String): ResultState<StatisticsMdl> {
             return remoteMatchDataSource.getEventStatisticsById(id)
+        }
+
+        override suspend fun searchEventByClubName(event: String): ResultState<EventsMdl> {
+            return remoteMatchDataSource.searchEventByClubName(event, "2020-2021")
         }
 
     }

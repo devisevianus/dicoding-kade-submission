@@ -24,6 +24,7 @@
         <activity android:name=".feature.leaguedetail.presentation.LeagueDetailActivity" />
         <activity android:name=".feature.matchdetail.presentation.MatchDetailActivity" />
         <activity android:name=".feature.matchdetail.presentation.NextMatchDetailActivity" />
+        <activity android:name=".feature.search.presentation.SearchMatchActivity" />
     </application>
 
 </manifest>

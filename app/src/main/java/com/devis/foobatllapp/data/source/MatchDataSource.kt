@@ -8,5 +8,6 @@ interface MatchDataSource {
 
     suspend fun getEventDetailById(id: String): ResultState<EventsMdl>
     suspend fun getEventStatisticsById(id: String): ResultState<StatisticsMdl>
+    suspend fun searchEventByClubName(event: String, season: String): ResultState<EventsMdl>
 
 }

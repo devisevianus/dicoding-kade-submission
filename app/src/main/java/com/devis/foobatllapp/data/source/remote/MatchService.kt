@@ -18,4 +18,10 @@ interface MatchService {
         @Query("id") id: String
     ): Response<StatisticsMdl>
 
+    @GET("api/v1/json/1/searchevents.php")
+    suspend fun searchEventByClubName(
+        @Query("e") event: String,
+        @Query("s") season: String
+    ): Response<EventsMdl>
+
 }

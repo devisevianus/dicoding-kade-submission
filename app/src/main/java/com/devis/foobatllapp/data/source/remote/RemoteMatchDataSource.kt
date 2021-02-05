@@ -33,4 +33,15 @@ class RemoteMatchDataSource(
         }
     }
 
+    override suspend fun searchEventByClubName(event: String, season: String): ResultState<EventsMdl> {
+        return fetchState {
+            val result = apiService.searchEventByClubName(event, season)
+            if (result.isSuccessful) {
+                ResultState.Success(result.body())
+            } else {
+                ResultState.Error(result.handleError().message)
+            }
+        }
+    }
+
 }

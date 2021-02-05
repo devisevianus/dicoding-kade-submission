@@ -62,75 +62,91 @@ class LineUpFragment : BaseFragment() {
                         val awayMidfield = it.data.events[0].away_midfield
                         val awayForward = it.data.events[0].away_forward
 
-                        val lineUpHome = LineUpMdl(
-                            position = "GK",
-                            name = homeGoalKeeper
-                        )
-                        mLineUpHome.add(lineUpHome)
+                        if (!homeGoalKeeper.isNullOrEmpty()) {
+                            val lineUpHome = LineUpMdl(
+                                position = "GK",
+                                name = homeGoalKeeper
+                            )
+                            mLineUpHome.add(lineUpHome)
+                        }
 
-                        homeDefense.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpHome1 = LineUpMdl(
-                                    position = "DF",
-                                    name = s
-                                )
-                                mLineUpHome.add(lineUpHome1)
+                        if (!homeDefense.isNullOrEmpty()) {
+                            homeDefense.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpHome1 = LineUpMdl(
+                                        position = "DF",
+                                        name = s
+                                    )
+                                    mLineUpHome.add(lineUpHome1)
+                                }
                             }
                         }
 
-                        homeMidfield.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpHome1 = LineUpMdl(
-                                    position = "MF",
-                                    name = s
-                                )
-                                mLineUpHome.add(lineUpHome1)
+                        if (!homeMidfield.isNullOrEmpty()) {
+                            homeMidfield.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpHome1 = LineUpMdl(
+                                        position = "MF",
+                                        name = s
+                                    )
+                                    mLineUpHome.add(lineUpHome1)
+                                }
                             }
                         }
 
-                        homeForward.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpHome1 = LineUpMdl(
-                                    position = "FW",
-                                    name = s
-                                )
-                                mLineUpHome.add(lineUpHome1)
+                        if (!homeForward.isNullOrEmpty()) {
+                            homeForward.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpHome1 = LineUpMdl(
+                                        position = "FW",
+                                        name = s
+                                    )
+                                    mLineUpHome.add(lineUpHome1)
+                                }
                             }
                         }
 
-                        val lineUpAway = LineUpMdl(
-                            position = "GK",
-                            name = awayGoalKeeper
-                        )
-                        mLineUpAway.add(lineUpAway)
+                        if (!awayGoalKeeper.isNullOrEmpty()) {
+                            val lineUpAway = LineUpMdl(
+                                position = "GK",
+                                name = awayGoalKeeper
+                            )
+                            mLineUpAway.add(lineUpAway)
+                        }
 
-                        awayDefense.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpAway1 = LineUpMdl(
-                                    position = "DF",
-                                    name = s
-                                )
-                                mLineUpAway.add(lineUpAway1)
+                        if (!awayDefense.isNullOrEmpty()) {
+                            awayDefense.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpAway1 = LineUpMdl(
+                                        position = "DF",
+                                        name = s
+                                    )
+                                    mLineUpAway.add(lineUpAway1)
+                                }
                             }
                         }
 
-                        awayMidfield.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpAway1 = LineUpMdl(
-                                    position = "MF",
-                                    name = s
-                                )
-                                mLineUpAway.add(lineUpAway1)
+                        if (!awayMidfield.isNullOrEmpty()) {
+                            awayMidfield.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpAway1 = LineUpMdl(
+                                        position = "MF",
+                                        name = s
+                                    )
+                                    mLineUpAway.add(lineUpAway1)
+                                }
                             }
                         }
 
-                        awayForward.split(";").forEach { s ->
-                            if (s.isNotBlank()) {
-                                val lineUpAway1 = LineUpMdl(
-                                    position = "FW",
-                                    name = s
-                                )
-                                mLineUpAway.add(lineUpAway1)
+                        if (!awayForward.isNullOrEmpty()) {
+                            awayForward.split(";").forEach { s ->
+                                if (s.isNotBlank()) {
+                                    val lineUpAway1 = LineUpMdl(
+                                        position = "FW",
+                                        name = s
+                                    )
+                                    mLineUpAway.add(lineUpAway1)
+                                }
                             }
                         }
 

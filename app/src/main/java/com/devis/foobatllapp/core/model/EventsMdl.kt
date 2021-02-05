@@ -8,7 +8,8 @@ import java.io.Serializable
  */
 
 data class EventsMdl(
-    @SerializedName("events") val events: List<EventMdl>
+    @SerializedName("events") val events: List<EventMdl>,
+    @SerializedName("event") val event: List<EventMdl>
 ) : Serializable
 
 data class EventMdl(
@@ -29,17 +30,18 @@ data class EventMdl(
     @SerializedName("strAwayRedCards") val away_red_cards: String?,
     @SerializedName("strAwayYellowCards") val away_yellow_cards: String?,
     @SerializedName("strAwayGoalDetails") val away_goal_details: String?,
-    @SerializedName("strHomeLineupGoalkeeper") val home_goal_keeper: String,
-    @SerializedName("strHomeLineupDefense") val home_defense: String,
-    @SerializedName("strHomeLineupMidfield") val home_midfield: String,
-    @SerializedName("strHomeLineupForward") val home_forward: String,
+    @SerializedName("strHomeLineupGoalkeeper") val home_goal_keeper: String?,
+    @SerializedName("strHomeLineupDefense") val home_defense: String?,
+    @SerializedName("strHomeLineupMidfield") val home_midfield: String?,
+    @SerializedName("strHomeLineupForward") val home_forward: String?,
     @SerializedName("strHomeFormation") val home_formation: String,
-    @SerializedName("strAwayLineupGoalkeeper") val away_goal_keeper: String,
-    @SerializedName("strAwayLineupDefense") val away_defense: String,
-    @SerializedName("strAwayLineupMidfield") val away_midfield: String,
-    @SerializedName("strAwayLineupForward") val away_forward: String,
-    @SerializedName("strAwayFormation") val away_formation: String,
-    @SerializedName("strVenue") val stadium: String
+    @SerializedName("strAwayLineupGoalkeeper") val away_goal_keeper: String?,
+    @SerializedName("strAwayLineupDefense") val away_defense: String?,
+    @SerializedName("strAwayLineupMidfield") val away_midfield: String?,
+    @SerializedName("strAwayLineupForward") val away_forward: String?,
+    @SerializedName("strAwayFormation") val away_formation: String?,
+    @SerializedName("strVenue") val stadium: String,
+    @SerializedName("strSport") val str_sport: String
 ) : Serializable
 
 data class CustomEventMdl(
